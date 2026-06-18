@@ -1,4 +1,4 @@
-# 📊 DeFi Quantitative Architecture & Strategy
+## 📊 DeFi Quantitative Architecture & Strategy
 
 This repository contains my financial data engineering models, automated market-making algorithms, and Web3 data pipelines.
 
@@ -158,6 +158,48 @@ jobs:
 1. Fork or Clone this structural matrix workspace.
 2. Navigate to the **Actions** tab on the desktop layout.
 3. Select `Run Autonomous Quant Pipeline` and trigger `Run workflow` to execute the cloud environment instantly.
+
+#
+---
+
+### 5. Flash Loan Non-Collateral Arbitrage Engine (`flash_arbitrage.py`)
+* Simulates zero-collateral lending mechanics built on top of Web3 smart contracts.
+* Computes real-time execution loops calculating pricing inefficiencies between multi-DEX routers.
+* Integrates automated rollback math to verify protocol fee coverage before capital finality.
+
+```python
+# ⚡ FLASH LOAN ATOMIC ARBITRAGE PROTOCOL MODEL
+
+def execute_flash_arbitrage(loan_amount_usdc):
+    print("⚡ INSTANT CAPITAL ACTIVATED: Ingesting Flash Loan pool...")
+    
+    # 1. Establish initial debt obligations (0.09% flash loan fee)
+    loan_fee = loan_amount_usdc * 0.0009
+    total_debt_owed = loan_amount_usdc + loan_fee
+    
+    # 2. Simulate multi-DEX spot pricing profiles
+    exchange_a_eth_price = 3000.00   # Lower entry price
+    exchange_b_eth_price = 3050.00   # Higher exit price
+    
+    # 3. Route capital through execution matrix
+    tokens_purchased = loan_amount_usdc / exchange_a_eth_price
+    gross_revenue_usdc = tokens_purchased * exchange_b_eth_price
+    
+    # 4. Compute transactional finality math
+    net_profit = gross_revenue_usdc - total_debt_owed
+    
+    print(f"Borrowed Principal: \${loan_amount_usdc:,.2f} USDC")
+    print(f"Total Blockchain Debt Owed: \${total_debt_owed:,.2f} USDC")
+    print(f"Gross Trade Revenue: \${gross_revenue_usdc:,.2f} USDC")
+    
+    if net_profit > 0:
+        print(f"🟢 TRANSACTION COMPLETED: Atomic Profit Captured: \${net_profit:,.2f} USDC")
+    else:
+        print("⚠️ TRANSACTION REVERTED: Insufficient spread to cover gas and protocol fees.")
+
+# Execute model simulating a massive \$3,000,000 flash loan execution
+execute_flash_arbitrage(loan_amount_usdc=3000000)
+```
 
 
 
