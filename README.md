@@ -1,22 +1,20 @@
-# Defi-Quant-Architecture
 # 📊 DeFi Quantitative Architecture & Strategy
 
-This repository contains my financial data engineering models, automated market-making algorithms, and Web3 data pipelines, all optimized and executed via mobile infrastructure.
+This repository contains my financial data engineering models, automated market-making algorithms, and Web3 data pipelines.
 
 ## 🛠️ Tech Architecture Stack
 * **Languages:** Python (Data Analysis & Logic Engine)
-* **Data Core:** Pandas, NumPy (Mathematical modeling & anomaly detection)
-* **Web3 Integration:** CCXT API Engine, Web3.py Blockchain Connectors
+* **Data Core:** Pandas, NumPy (Mathematical modeling)
 
-## 📈 Completed Infrastructure Modules
+---
 
-### 1. Market Anomaly Quant Engine (`market_analysis.py`)
-* Leverages **Pandas matrices** to parse volatile pricing datasets.
-* Automatically calculates **Standard Deviation (Volatility Risk)** and velocity drops over customized intervals.
+## 📈 Active Core Infrastructure Module
 
-### 2. Constant Product Liquidity Pool Protocol (`liquidity_pool.py`)
+### Constant Product Liquidity Pool Protocol (`liquidity_pool.py`)
 * Simulates decentralized trading pool infrastructure using the mathematical formula **X × Y = K**.
 * Calculates real-time transaction slippage, network balance re-weighting, and automated protocol fee yields.
+
+```python
 # 📊 Quantitative Liquidity Pool & Slippage Engine
 # Formulated via Constant Product Invariant: X * Y = K
 
@@ -46,8 +44,10 @@ def calculate_slippage(eth_pool, usdc_pool, eth_deposit):
     print(f"Protocol Yield Collected: {fee_cut:.4f} ETH")
     print(f"Automated Price Slippage Impact: {slippage_percent:.2f}%")
 
-# Execute model simulating a large $50k transaction in a pool
+# Execute model simulating a large \$50k transaction in a pool
 calculate_slippage(eth_pool=1000, usdc_pool=3000000, eth_deposit=15)
+```
+
 
 
 
