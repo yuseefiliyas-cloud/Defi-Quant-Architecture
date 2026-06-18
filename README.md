@@ -63,5 +63,59 @@ calculate_slippage(eth_pool=1000, usdc_pool=3000000, eth_deposit=15)
 
 
 
+# 📊 Quantitative API Live-Feed Price Oracle
+# Architectural simulation of data ingestion pipelines via CCXT / Web3.py
+
+def run_live_price_oracle(target_exchange, trading_pair):
+    # Simulating the live JSON data payload received from an exchange API endpoint
+    # In live production, this dictionary updates via high-speed WebSockets
+    api_response_payload = {
+        'exchange': target_exchange,
+        'symbol': trading_pair,
+        'ask_price': 67452.10,    # Lowest price a seller is offering
+        'bid_price': 67448.50,    # Highest price a buyer is offering
+        'last_traded': 67450.00,  # Most recent execution price
+        'base_volume_24h': 14250.75
+    }
+    
+    print(f"--- FEED INITIALIZED: Connecting to {api_response_payload['exchange'].upper()} API ---")
+    print(f"Tracking Asset Matrix Pair: [{api_response_payload['symbol']}]\n")
+    
+    # 1. Calculate the Market Spread (The gap between buyers and sellers)
+    # Tight spreads indicate deep market liquidity, crucial for high-frequency algorithmic execution
+    raw_spread = api_response_payload['ask_price'] - api_response_payload['bid_price']
+    percentage_spread = (raw_spread / api_response_payload['ask_price']) * 100
+    
+    # 2. Compute Total Market Depth Capital Value
+    estimated_depth_value = api_response_payload['last_traded'] * api_response_payload['base_volume_24h']
+    
+    # 3. Output calculated financial telemetry to algorithmic trade router
+    print(f"Current Live Spot: ${api_response_payload['last_traded']:,.2f}")
+    print(f"Order Book Spread: ${raw_spread:.2f} ({percentage_spread:.4f}%)")
+    print(f"24h Ingested Volume Capacity: ${estimated_depth_value:,.2f}")
+    
+    # Algorithmic guardrail check: If spread is too wide, flag execution risk
+    if percentage_spread > 0.05:
+        print("⚠️ MARKET WARNING: High execution slippage risk. Widened spread detected.")
+    else:
+        print("🟢 EXECUTION ENVIRONMENT: Optimal liquidity. Low frictional drag.")
+    print("-" * 60)
+
+# Simulate pipeline analyzing Bitcoin on a global trading infrastructure
+run_live_price_oracle(target_exchange="binance", trading_pair="BTC/USDC")
+
+
+
+
+---
+
+### 3. Real-Time API Price Oracle Pipeline (`price_oracle.py`)
+* Simulates high-speed API data ingestion layers matching production framework specs.
+* Automatically processes order book raw inputs to calculate dynamic market spreads.
+* Implements execution guardrails to flag widened spreads and prevent trade friction.
+
+```python
+# [API Oracle Logic Code Active]
+```
 
 
