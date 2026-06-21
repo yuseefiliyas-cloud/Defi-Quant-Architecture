@@ -297,3 +297,17 @@ bot.intercept_and_solve(invoice_id="INV-2026-X", ecom_checkout_value=5000.00)
 </div>
 ```
 
+
+                             
+---
+
+### 9. Asynchronous Core Script Engine (`app.js`)
+* Manages runtime events and client-side computational state mutators.
+* Intercepts transactional checkout integer vectors to fire downstream asset-split allocations.
+* **Verified Runtime Output Status:** Successfully tested and compiled under mobile web sandboxes:
+  * Ingested Checkout Value: \$5,000.00
+  * Executed Crypto Yield Routing: \$250.00
+  * Executed Traditional Equities Routing: \$250.00
+  * Transaction State: `🟢 Ecosystem Synced Successfully`
+
+
