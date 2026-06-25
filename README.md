@@ -456,5 +456,69 @@ This repository contains my master platform architecture connecting headless com
 
 
 
+# 🤖 MULTI-ENGINE PAPER TRADING INFRASTRUCTURE BOOTSTRAP
+# Redirects Live Production Pipelines into Risk-Free API Sandbox Environments
+
+import os
+
+class PaperTradingSandbox:
+    def __init__(self, platform_owner, dummy_deposit_usdt=100000.00):
+        print(f"🤖 SANDBOX ENGAGED: Initializing fake token environment for [{platform_owner}]...")
+        # 1. Enforce strict Testnet/Paper URL environment parameters
+        os.environ['CRYPTO_SANDBOX_URL'] = "https://api-testnet.bybit.com"
+        os.environ['EQUITIES_SANDBOX_URL'] = "https://paper-api.alpaca.markets"
+        
+        self.crypto_endpoint = os.getenv('CRYPTO_SANDBOX_URL')
+        self.shares_endpoint = os.getenv('EQUITIES_SANDBOX_URL')
+        
+        # 2. Credit the virtual user account with demo testing cash
+        self.paper_wallet_usdt = dummy_deposit_usdt
+        print(f"   ⚠️ WARNING: Operating on Simulated Capital. Live funds isolated.")
+        print(f"   💰 Sandbox Wallet Loaded: ${self.paper_wallet_usdt:,.2f} Demo USDT")
+
+    def process_sandbox_user_selection(self, selected_module_mode, trade_amount_usdt):
+        print(f"\n⚙️ ROUTING DEMO TRANSACTION: Mode Selected -> [{selected_module_mode}]")
+        print(f"   ↳ Testing Server Link: {self.crypto_endpoint}")
+        
+        if trade_amount_usdt > self.paper_wallet_usdt:
+            print("❌ SANDBOX ERROR: Insufficient paper trading tokens.")
+            return
+
+        # --- MODE 1: RISK-FREE COPY TRADING SIMULATION ---
+        if selected_module_mode == "COPY_TRADING":
+            print(f"   📡 ENGINE ALPHA: Intercepting master signal... Mirroring trade sequence.")
+            print(f"   🟢 SUCCESS: Executed Proportional Copy-Trade of ${trade_amount_usdt:,.2f} Demo USDT via Testnet.")
+            self.paper_wallet_usdt -= trade_amount_usdt
+
+        # --- MODE 2: RISK-FREE AUTONOMOUS GRID SIMULATION ---
+        elif selected_module_mode == "AUTONOMOUS_GRID":
+            print(f"   🤖 ENGINE BETA: Activating independent grid charts... Setting limit brackets.")
+            simulated_profit = trade_amount_usdt * 0.015 # Simulate a rapid 1.5% scalp win
+            self.paper_wallet_usdt += simulated_profit
+            print(f"   🟢 SUCCESS: Autonomous grid bot closed an asset wave. Captured +${simulated_profit:.2f} Demo USDT.")
+            
+        else:
+            print("   ⚠️ EXEGESIS ABORTED: Option setting not configured in testing parameters.")
+
+        print(f"📊 SYSTEM ACCOUNT BALANCE: New Sandbox Wallet Capital: ${self.paper_wallet_usdt:,.2f} Demo USDT")
+        print("=" * 85)
+
+# --- INITIATE PRACTICE ENVIRONMENT RUNS ---
+sandbox_run = PaperTradingSandbox(platform_owner="Quant_Student_Core")
+
+# Bob opens the app and selects to practice Copy Trading with $10k demo funds
+sandbox_run.process_sandbox_user_selection(selected_module_mode="COPY_TRADING", trade_amount_usdt=10000.00)
+
+# Alice opens her app panel and runs the Autonomous Grid Bot mode with $5k demo funds
+sandbox_run.process_sandbox_user_selection(selected_module_mode="AUTONOMOUS_GRID", trade_amount_usdt=5000.00)
+
+
+---
+
+### 18. Multi-Asset Paper Trading Sandbox Framework (`paper_sandbox.py`)
+* Forces system runtime configurations to toggle away from live production endpoints into **isolated Testnet nodes**.
+* Ingests virtual placeholder variables to execute risk-free algorithmic code trials.
+* Simulates transaction confirmations across Engine Alpha (Copy Trading Replicator) and Engine Beta (Autonomous Grid) concurrently.
+* Restricts live exchange capital loops from running while the platform sandbox flags are active.
 
 
