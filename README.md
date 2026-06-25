@@ -512,5 +512,84 @@ arbitrage_router.process_international_invoice(client_id="UK_Retail_London", inp
 * Tracks global transactional telemetry metrics to monitor macroeconomic scaling parameters across multi-national pipelines.
 
 
+# 🛡️ AUTOMATED COMPLIANCE MONITORING & TRANSACTION FRAUD GUARD
+# Implements Real-Time Risk Scoring and Anomaly Detection Rules
+
+import time
+
+class TransactionFraudGuard:
+    def __init__(self):
+        print("🛡️ FRAUD DEFENSE ENGINE ACTIVE: Initializing AML transaction screening lines...\n")
+        # Simulating established baseline historical profiles for active client nodes
+        self.client_risk_baselines = {
+            'Shopify_Merchant_01': {'avg_order_usd': 150.00, 'last_seen_ip': "192.168.1.5", 'risk_tier': 'LOW'},
+            'Active_Quant_Trader': {'avg_order_usd': 2000.00, 'last_seen_ip': "45.79.10.11", 'risk_tier': 'LOW'}
+        }
+        self.flagged_suspicious_logs = []
+
+    def evaluate_transaction_telemetry(self, client_id, transaction_amount_usd, source_ip_address):
+        print(f"🕵️ MONITORING INCOMING METRICS: Analyzing [{client_id}]...")
+        
+        # Default risk profiling setup
+        risk_score = 0
+        security_action = "PROCEED"
+        
+        # 1. Fallback validation check: If client profile is untracked, trigger a default medium alert
+        if client_id not in self.client_risk_baselines:
+            print("   ⚠️ SECURITY WARNING: Unregistered client identity footprint. Escalating risk score.")
+            risk_score += 40
+            historical_baseline = 500.00 # Default fallback threshold
+            last_known_ip = source_ip_address
+        else:
+            historical_baseline = self.client_risk_baselines[client_id]['avg_order_usd']
+            last_known_ip = self.client_risk_baselines[client_id]['last_seen_ip']
+
+        # 2. RULE VECTOR A: Verify Volume Spikes (Flag if amount is > 5x historical average)
+        if transaction_amount_usd > (historical_baseline * 5):
+            print(f"   🚨 ALERT: Extreme volume anomaly! Current order: ${transaction_amount_usd:,.2f} vs Avg: ${historical_baseline:,.2f}")
+            risk_score += 50
+
+        # 3. RULE VECTOR B: Check Geographical Session High-Jacking (IP Mismatch check)
+        if source_ip_address != last_known_ip:
+            print(f"   🚨 ALERT: Structural location jump! Input IP: {source_ip_address} vs Profile IP: {last_known_ip}")
+            risk_score += 35
+
+        # 4. Compute Final Security Verdict
+        if risk_score >= 80:
+            security_action = "BLOCK_AND_ISOLATE"
+            log_entry = {'client': client_id, 'amount': transaction_amount_usd, 'ip': source_ip_address, 'verdict': 'BLOCKED'}
+            self.flagged_suspicious_logs.append(log_entry)
+            print(f"❌ SECURITY VERDICT: [{security_action}]. Transaction frozen. Filing Suspicious Activity Log.")
+        elif risk_score >= 35:
+            security_action = "MANDATE_SECONDARY_AUTH"
+            print(f"⚠️ SECURITY VERDICT: [{security_action}]. Triggering strict API validation step.")
+        else:
+            print(f"🟢 SECURITY VERDICT: [{security_action}]. Baseline cleared. Processing trade to broker pipelines.")
+            
+        print(f"📊 LIVE TELEMETRY LOG: Dynamic Risk Score evaluated at [{risk_score}/100]")
+        print("-" * 85)
+        return security_action
+
+# Trigger compliance sandbox evaluations
+anti_fraud_vault = TransactionFraudGuard()
+
+# Execution Scenario A: Normal transactional pattern within baseline metrics
+anti_fraud_vault.evaluate_transaction_telemetry(
+    client_id="Active_Quant_Trader", transaction_amount_usd=2500.00, source_ip_address="45.79.10.11"
+)
+
+# Execution Scenario B: Malicious event. Hacker attempts a massive checkout spike from a compromised offshore IP node
+anti_fraud_vault.evaluate_transaction_telemetry(
+    client_id="Shopify_Merchant_01", transaction_amount_usd=95000.00, source_ip_address="103.24.12.99"
+)
+
+
+---
+
+### 19. Automated Compliance Monitoring & Fraud Interception Node (`fraud_guard.py`)
+* Performs continuous real-time evaluations of incoming transaction data structures.
+* Implements multi-vectored risk evaluation matrices checking velocity anomalies and IP infrastructure jumps.
+* Triggers automated systemic block overrides (`BLOCK_AND_ISOLATE`) to halt asset execution tunnels if threat values break safety ranges.
+* Compiles comprehensive suspicious activity logs to track security health parameters automatically.
 
 
