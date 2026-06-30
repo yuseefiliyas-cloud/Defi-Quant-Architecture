@@ -1,4 +1,4 @@
-(## 📊 DeFi Quantitative Architecture & Strategy
+requirements.txt
 
 This repository contains my financial data engineering models, automated market-making algorithms, and Web3 data pipelines.
 
@@ -729,3 +729,6 @@ This platform undergoes strict, multi-vectored architectural audits to isolate c
 * [ ] **End-to-End Cryptographic Handshakes:** Communication lines with traditional stock nodes are enforced via TLS 1.3 protocol architectures.
 * [ ] **Sandbox Sandbox Validations:** The platform maintains an isolated Paper Trading environment to thoroughly vet strategy changes before risking live assets.
 
+ccxt==4.4.15
+pandas==2.2.2
+numpy==1.26.4
